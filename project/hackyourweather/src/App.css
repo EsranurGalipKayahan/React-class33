@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+:root {
+
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainGrey: #c7c3c3;
+}
+body {
+  background: var(--mainWhite);
+  color: var(--mainBlack);
+  font-family: "Roboto", sans-serif;
+}
+h1 {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 2rem 0;
+  color: var(--mainBlack);
+  letter-spacing: 5px;
+}
+
+.App {
+  text-align: center;
+  width: 90%;
+  background: var(--mainWhite);
+  border-radius: 2px;
+  display: grid;
+  justify-content: center; 
+}
+.city-header{
+  font-size: large;
+  font-weight: bold;
+}
+ul, li{
+  list-style-type: none;
+}
+.weather{ 
+    display: grid;
+    text-transform: capitalize;
+    line-height: 1.25rem;
+    padding-top: 7px;
+    padding-bottom: 15px;
+}
+
+.weather-header{
+  font-weight: bold;
+}
+.container{
+  display: grid;
+  margin: 2rem 0.75rem 0 0.75rem;
+  border: none;
+  padding: 5px;
+  justify-content: center;
+  text-align: left;
+}
+.city-box{
+  background-color: var(--mainWhite);
+  line-height: 0.75rem;
+  padding: 10px 20px;
+  margin-bottom: 1rem;
+  border: 2px solid #616161;
+  display:grid;
+  line-height:2rem ;
+ 
+}
+.city-box:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.05);
+}
