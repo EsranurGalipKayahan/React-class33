@@ -1,11 +1,7 @@
 import { DogGallery } from "./components/DogGallery";
 
 function App() {
-  return (
-    <>
-      <DogGallery />
-    </>
-  );
+  return <DogGallery />;
 }
 
 export default App;

@@ -10,11 +10,14 @@ export const PersonController = () => {
     try {
       const response = await fetch("https://www.randomuser.me/api?results=1");
       const data = await response.json();
+
+      const { name, email } = data.results[0];
+
       //    setTimeout(() => {
       setPerson({
-        firstName: data.results[0].name.first,
-        lastName: data.results[0].name.last,
-        email: data.results[0].email,
+        firstName: name.first,
+        lastName: name.last,
+        email: email,
       });
       //  }, 3000);
     } catch (err) {
@@ -27,7 +30,7 @@ export const PersonController = () => {
   return error ? (
     <h2>Error while fetching data</h2>
   ) : (
-    <Person person={person} />
+    person && <Person person={person} />
   );
 };
 export default PersonController;
