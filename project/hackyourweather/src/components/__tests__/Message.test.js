@@ -1,26 +1,18 @@
 import { render, screen } from "@testing-library/react";
-import { getCelcius } from "../../utilsFunc.js";
-import { TEST } from "../../constants.js";
+import { MESSAGES } from "../../constants.js";
 
 import Message from "../Message";
 
 test("renders nothing if no props", () => {
-  const { container } = render(<Message />);
-  expect(container).toBeEmptyDOMElement();
-});
-test("renders nothing if type exists and isEnabled missing", () => {
-  const type = "notFound";
-  const { container } = render(<Message type={type} />);
-  expect(container).toBeEmptyDOMElement();
-});
-test("renders nothing if isEnabled exists and type missing", () => {
-  const { container } = render(<Message isEnabled={true} />);
-  expect(container.textContent).toBe("");
+  const { getByRole } = render(<Message />);
+  const msgEl = getByRole("heading");
+  expect(msgEl).toBeInTheDocument();
+  expect(msgEl).toHaveTextContent("");
 });
 test("renders message if props are valid", () => {
-  const type = "notFound";
-  const { getByText } = render(<Message type={type} isEnabled={true} />);
-  const msgEl = getByText(TEST.notFound);
+  const type = "cityIsNotFound";
+  const { getByText } = render(<Message type={type} />);
+  const msgEl = getByText(MESSAGES.cityIsNotFound);
 
   expect(msgEl).toBeInTheDocument();
 });

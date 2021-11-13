@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { CityListController } from "./components/CityListController";
 
-import SearchController, { SearchForm } from "./components/SearchController";
+import SearchController from "./components/SearchController";
 
 function App() {
   return (

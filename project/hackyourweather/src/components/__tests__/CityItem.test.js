@@ -3,10 +3,6 @@ import { getCelcius } from "../../utilsFunc.js";
 
 import CityItem from "../CityItem";
 
-test("renders error if there is no props", () => {
-  const { container } = render(<CityItem />);
-  expect(container).toBeEmptyDOMElement();
-});
 test("renders correctly if the city information is correct", () => {
   const cityInfo = {
     coord: { lon: 151.22, lat: -33.85 },

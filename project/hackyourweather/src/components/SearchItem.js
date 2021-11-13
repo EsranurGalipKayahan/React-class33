@@ -1,6 +1,6 @@
 import React from "react";
 
-export const SearchItem = ({ cityHandler, searcHandler }) => {
+export const SearchItem = ({ cityHandler, searchHandler }) => {
   return (
     <div className="input-group rounded" data-testid="search-container">
       <input
@@ -13,7 +13,7 @@ export const SearchItem = ({ cityHandler, searcHandler }) => {
       <button
         data_testid="search-btn"
         className="input-group-text border-0 btn  mb-2 fas fa-search"
-        onClick={searcHandler}
+        onClick={searchHandler}
       ></button>
     </div>
   );

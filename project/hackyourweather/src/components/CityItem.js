@@ -3,9 +3,7 @@ import { SCSS_CODE } from "../constants.js";
 import { getCelcius } from "../utilsFunc.js";
 
 export const CityItem = ({ city }) => {
-  return city === undefined ? (
-    <></>
-  ) : (
+  return (
     city.cod === SCSS_CODE && (
       <li>
         <div className="city-box">

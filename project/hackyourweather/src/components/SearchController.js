@@ -3,7 +3,7 @@ import { CityItem } from "./CityItem";
 import { SearchItem } from "./SearchItem";
 import "../App.css";
 import Message from "./Message";
-import { API_URL, MSG_TYPES, QRY_PARAMS, SCSS_CODE } from "../constants.js";
+import { API_URL, MSG_TYPES, SCSS_CODE, QRY_PARAMS } from "../constants.js";
 
 export const SearchController = () => {
   const [city, setCity] = useState("");
@@ -11,11 +11,7 @@ export const SearchController = () => {
   const [fetchingError, setFetchingError] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
-  const cityHandler = (e) => {
-    setNotFound(false);
-    setCity(e.target.value);
-  };
-  const searcHandler = async () => {
+  const searchHandler = async () => {
     try {
       const url = new URL(API_URL);
       url.searchParams.append(QRY_PARAMS[0], city);
@@ -25,8 +21,9 @@ export const SearchController = () => {
       );
       const response = await fetch(url);
       const data = await response.json();
+
       if (data.cod != SCSS_CODE) {
-        setCityInfo(""); //undefined
+        setCityInfo("");
         setNotFound(true);
       } else {
         setNotFound(false);
@@ -40,12 +37,16 @@ export const SearchController = () => {
 
   return (
     <>
-      <SearchItem cityHandler={cityHandler} searcHandler={searcHandler} />
-      <Message
-        type={notFound ? MSG_TYPES.NOT_FOUND : MSG_TYPES.FETCH_ERROR}
-        isEnabled={notFound || fetchingError}
+      <SearchItem
+        cityHandler={(e) => setCity(e.target.value)}
+        searchHandler={searchHandler}
       />
-      <CityItem city={cityInfo} />
+      {(notFound || fetchingError) === true && (
+        <Message
+          type={notFound ? MSG_TYPES.NOT_FOUND : MSG_TYPES.FETCH_ERROR}
+        />
+      )}
+      {cityInfo && <CityItem city={cityInfo} />}
     </>
   );
 };

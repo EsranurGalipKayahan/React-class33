@@ -6,9 +6,9 @@ import { getCelcius } from "../../utilsFunc.js";
 import {
   API_URL,
   BAD_RQS_CODE,
+  MESSAGES,
   QRY_PARAMS,
   SRV_ERR_CODE,
-  TEST,
 } from "../../constants.js";
 
 const city = "Sydney";
@@ -68,7 +68,7 @@ test("renders correctly if the city is invalid", async () => {
     },
   });
   fireEvent.click(search_btnEl);
-  await screen.findByText(TEST.notFound);
+  await screen.findByText(MESSAGES.cityIsNotFound);
 });
 test("renders correctly if fetch returns an json object within weather information", async () => {
   const { getByTestId, getByRole } = render(<SearchController />);
@@ -106,5 +106,5 @@ test("handles server error", async () => {
     },
   });
   fireEvent.click(search_btnEl);
-  await screen.findByText(TEST.fetchingError);
+  await screen.findByText(MESSAGES.fetchingError);
 });

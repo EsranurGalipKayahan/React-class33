@@ -1,10 +1,10 @@
-export const TEST = {
-  notFound: "City is not found!",
+export const MESSAGES = {
+  cityIsNotFound: "City is not found!",
   fetchingError: "Error occured while fetching data!",
 };
 export const MSG_TYPES = {
   FETCH_ERROR: "fetchingError",
-  NOT_FOUND: "notFound",
+  NOT_FOUND: "cityIsNotFound",
 };
 export const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 export const SCSS_CODE = 200;

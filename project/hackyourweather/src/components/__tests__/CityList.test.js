@@ -2,18 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { getCelcius } from "../../utilsFunc.js";
 import CityList from "../CityList";
 
-test("renders error if the map is null", () => {
-  let cities = null;
-  const { getByText } = render(<CityList cities={cities} />);
-  const errorEl = getByText("Error");
-  expect(errorEl).toBeInTheDocument();
-});
-
-test("renders error if there is no props", () => {
-  const { getByText } = render(<CityList />);
-  const errorEl = getByText("Error");
-  expect(errorEl).toBeInTheDocument();
-});
 test("renders correctly if the city information is correct", () => {
   const cityInfo = [
     {
