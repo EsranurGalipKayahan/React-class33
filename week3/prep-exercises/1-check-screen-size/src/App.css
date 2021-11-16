@@ -1,0 +1,14 @@
+.container{
+  width:30%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: start;
+  justify-content: center;
+}
+.avatar{
+  width: 80%;
+}
+.info{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}

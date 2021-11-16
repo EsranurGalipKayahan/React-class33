@@ -1,0 +1,40 @@
+export const RANDOM_VALUES = {
+  accessory: ["none", "roundGlasses", "tinyGlasses", "shades"],
+  clothing: ["naked", "shirt", "dressShirt", "vneck", "tankTop", "dress"],
+  clothingColor: ["white", "blue", "black", "green", "red"],
+  graphic: ["none", "redwood", "gatsby", "vue", "react", "graphQL"],
+  hat: ["none", "none2", "none3", "none4", "none5", "beanie", "turban"],
+  hatColor: ["white", "blue", "black", "green", "red"],
+};
+export const AVATAR_TYPES = {
+  Sara: {
+    eyebrows: "raised",
+    eyes: "happy",
+    facialHair: "none",
+    hair: "short",
+    hairColor: "brown",
+    lipColor: "pink",
+    mouth: "tongue",
+    skinTone: "light",
+  },
+  Esra: {
+    eyebrows: "leftLowered",
+    eyes: "simple",
+    facialHair: "none2",
+    hair: "bun",
+    hairColor: "brown",
+    lipColor: "red",
+    mouth: "openSmile",
+    skinTone: "light",
+  },
+  Cuma: {
+    eyebrows: "serious",
+    eyes: "squint",
+    facialHair: "none3",
+    hair: "pixie",
+    hairColor: "black",
+    lipColor: "red",
+    mouth: "serious",
+    skinTone: "brown",
+  },
+};
