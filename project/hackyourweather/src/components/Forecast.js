@@ -17,19 +17,19 @@ export const Forecast = () => {
   const { cityId } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const [graphData, setGraphData] = useState([]);
 
-  const [grafData, setGrafData] = useState([]);
+  const prepareGraphData = (data) => {
+    let tempData = [];
 
-  const fillData = (data) => {
-    const tempData = [];
-    for (let num = 0; num < data.cnt; num++) {
-      tempData.push({
-        date: dateFormatter(data.list[num].dt_txt),
-        temp: parseFloat(data.list[num].main.temp),
-      });
-    }
+    tempData = data.list.map((weatherInfo) => {
+      return {
+        date: dateFormatter(weatherInfo.dt_txt),
+        temp: parseFloat(weatherInfo.main.temp),
+      };
+    });
 
-    setGrafData(tempData);
+    setGraphData(tempData);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -38,26 +38,24 @@ export const Forecast = () => {
           `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&units=metric&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
         );
         const data = await response.json();
-
         setData(data);
-        fillData(data);
+        prepareGraphData(data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-    fillData(data);
   }, [cityId]);
   return (
-    <div className="graf">
-      {grafData.length !== 0 && (
+    <div className="graph">
+      {graphData.length !== 0 && (
         <>
           <h1>5 days Forecast</h1>
           <h3>
             {data.city.name}, {data.city.country}
           </h3>
           <ResponsiveContainer width={750} height={300}>
-            <AreaChart data={grafData}>
+            <AreaChart data={graphData}>
               <defs>
                 <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="#3431A7" stopOpacity={0.4} />

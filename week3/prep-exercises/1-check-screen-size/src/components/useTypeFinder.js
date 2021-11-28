@@ -9,7 +9,7 @@ export const useTypeFinder = () => {
   const [avatarType, setAvatarType] = useState({});
   const [attrList, setAttrList] = useState({});
 
-  const randomValues = () => {
+  const setRandomAttributes = () => {
     const list = {};
 
     for (let key in RANDOM_VALUES) {
@@ -31,7 +31,7 @@ export const useTypeFinder = () => {
   };
   useEffect(() => {
     findScreenType();
-    randomValues();
+    setRandomAttributes();
   }, [windowSize]);
   return { avatarType, attrList };
 };

@@ -5,6 +5,7 @@ import "../App.css";
 import Message from "./Message";
 import { API_URL, MSG_TYPES, SCSS_CODE, QRY_PARAMS } from "../constants.js";
 import { CityContext } from "./CityContext";
+import Loader from "react-loader-spinner";
 
 export const SearchController = () => {
   const [city, setCity] = useState("");
@@ -12,11 +13,13 @@ export const SearchController = () => {
   const [cityInfo, setCityInfo] = useState(undefined);
   const [fetchingError, setFetchingError] = useState(false);
   const [notFound, setNotFound] = useState(false);
-  const [isInvalid, setIsInvalid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchHandler = async () => {
     if (city.length >= 1) {
-      setIsInvalid(false);
+      setIsValid(true);
+      setIsLoading(true);
       try {
         const url = new URL(API_URL);
         url.searchParams.append(QRY_PARAMS[0], city);
@@ -35,15 +38,18 @@ export const SearchController = () => {
           setCityInfo(data);
           addCity(data);
         }
+        setIsLoading(false);
         setFetchingError(false);
       } catch (err) {
         setFetchingError(true);
+        setIsLoading(false);
       }
     } else {
       setFetchingError(false);
-      setIsInvalid(true);
+      setIsValid(false);
       setCityInfo("");
       setNotFound(false);
+      setIsLoading(false);
     }
   };
 
@@ -53,7 +59,7 @@ export const SearchController = () => {
         cityHandler={(e) => setCity(e.target.value)}
         searchHandler={searchHandler}
       />
-      {(notFound || fetchingError || isInvalid) === true && (
+      {(notFound || fetchingError || !isValid) === true && (
         <Message
           type={
             notFound
@@ -65,6 +71,9 @@ export const SearchController = () => {
         />
       )}
       {cityInfo && <CityItem city={cityInfo} />}
+      {isLoading && (
+        <Loader type="Puff" color="#00BFFF" height={100} width={100} />
+      )}
     </>
   );
 };

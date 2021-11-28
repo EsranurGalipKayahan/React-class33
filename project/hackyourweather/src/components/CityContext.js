@@ -9,8 +9,8 @@ export const CityProvider = (props) => {
     setCities(cities.filter((city) => city.id != id));
   };
   const addCity = (city) => {
-    const flag = cities.find((item) => item.name == city.name);
-    if (!flag) setCities([city, ...cities]);
+    const verifiedCity = cities.find((item) => item.name == city.name);
+    if (!verifiedCity) setCities([city, ...cities]);
   };
 
   return (
